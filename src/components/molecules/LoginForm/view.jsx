@@ -37,7 +37,7 @@ const LogginForm = () => {
         label='Email'
         error={error}
         helperText={error && "Something went wrong"}
-        variant='outlined'
+        variant='standard'
         value={credentials.email}
         onChange={handleChange}
       />
@@ -45,7 +45,7 @@ const LogginForm = () => {
         name='password'
         type='password'
         label='Password'
-        variant='outlined'
+        variant='standard'
         value={credentials.password}
         onChange={handleChange}
       />
