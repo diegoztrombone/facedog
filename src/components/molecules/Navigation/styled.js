@@ -15,7 +15,7 @@ export const NavigationContainer = styled(Box)`
   h2 {
     font-size: 2rem;
     font-weight: 700;
-    color: ${palette.primary}
+    color: ${palette.primary};
   }
 `
 
@@ -30,9 +30,11 @@ export const Container = styled('div')`
 
 export const S_Button = styled(Button)`
   width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 10fr;
+  display: flex;
   align-items: center;
-  justify-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+
+  p {
+    margin-left: 0.5rem;
+  }
 `

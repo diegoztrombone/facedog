@@ -36,7 +36,7 @@ const LogginForm = () => {
         type='email'
         label='Email'
         error={error}
-        helperText={error && "Something went wrong"}
+        helperText={error && 'Something went wrong'}
         variant='standard'
         value={credentials.email}
         onChange={handleChange}
@@ -52,7 +52,12 @@ const LogginForm = () => {
       <StyledButton loading={loading} type='submit' variant='contained' startIcon={<LoginIcon />} onClick={handleLogin}>
         Login
       </StyledButton>
-      <StyledButton loading={loadingGoogle} variant='contained' startIcon={<GoogleIcon />} onClick={handleLoginWithGoogle}>
+      <StyledButton
+        loading={loadingGoogle}
+        variant='contained'
+        startIcon={<GoogleIcon />}
+        onClick={handleLoginWithGoogle}
+      >
         Login with Google
       </StyledButton>
     </StyledForm>

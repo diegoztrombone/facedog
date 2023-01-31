@@ -1,17 +1,21 @@
-import { useState } from 'react'
-import { auth } from '@/services'
+import { useEffect, useState } from 'react'
+import { authService, setAppIdHeader, removeAppIdHeader } from '@/services'
 import { useLocalStorage } from '.'
 const useAuth = () => {
   const [loading, setLoading] = useState(false)
   const [loadingGoogle, setLoadingGoogle] = useState(false)
   const [error, setError] = useState(null)
   const [user, setUser] = useLocalStorage('user')
-  const [_, setToken] = useLocalStorage('access_token')
+  const [token, setToken] = useLocalStorage('access_token')
+
+  useEffect(() => {
+    token ? setAppIdHeader(import.meta.env.VITE_API_ID) : removeAppIdHeader()
+  }, [token])
 
   const login = async credentials => {
     try {
       setLoading(true)
-      const { accessToken, email, displayName, phoneNumber, ...data } = await auth.login(credentials)
+      const { accessToken, email, displayName, phoneNumber, ...data } = await authService.login(credentials)
       setUser({ email, displayName, phoneNumber })
       setToken(accessToken)
       setLoading(false)
@@ -26,7 +30,7 @@ const useAuth = () => {
   const loginWithGoogle = async () => {
     try {
       setLoadingGoogle(true)
-      const { accessToken, email, displayName, phoneNumber, ...data } = await auth.loginWithGoogle()
+      const { accessToken, email, displayName, phoneNumber, ...data } = await authService.loginWithGoogle()
       setUser({ email, displayName, phoneNumber })
       setToken(accessToken)
       setLoadingGoogle(false)
@@ -42,8 +46,8 @@ const useAuth = () => {
     try {
       setToken(null)
       setUser(null)
-      await auth.logout()
-      
+      removeAppIdHeader()
+      await authService.logout()
     } catch (error) {
       console.log('EROR LOGOUT', error)
     }

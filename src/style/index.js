@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
+import styled from '@emotion/styled'
 import { createTheme } from '@mui/material'
 import reset from 'styled-reset'
 
@@ -39,9 +40,17 @@ const GlobalStyle = createGlobalStyle`
         font-family: 'Lato', sans-serif;
     }
 
-    h1 {
+    h1, h2 {
         font-size: 2rem;
-        font-weight: bold;
+        font-weight: 700;
     }
 `
-export { GlobalStyle, Theme, palette }
+
+const PageContainer = styled('main')`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100vh;
+`
+export { GlobalStyle, Theme, palette, PageContainer }

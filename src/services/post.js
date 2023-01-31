@@ -1,25 +1,15 @@
-import axios from 'axios'
 import { http } from '.'
 import api from '@/api'
 
-const getAllUsersList = () => {
+const getPosts = () => {
   return new Promise((resolve, reject) => {
     http
-      .get(api.getAllUsersList)
+      .get(api.getAllPost)
       .then(response => resolve(response.data))
       .catch(error => reject(error))
   })
 }
-
-const getMyUsersList = () => {
-  return new Promise((resolve, reject) => {
-    http
-      .get(api.getMyUsersList)
-      .then(response => resolve(response.data))
-      .catch(error => reject(error))
-  })
-}
-
+/* 
 const getOneUser = ({ id }) => {
   return new Promise((resolve, reject) => {
     http
@@ -27,6 +17,6 @@ const getOneUser = ({ id }) => {
       .then(response => resolve(response.data))
       .catch(error => reject(error))
   })
-}
+} */
 
-export default { getAllUsersList, getMyUsersList, getOneUser }
+export default { getPosts }

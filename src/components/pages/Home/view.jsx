@@ -1,9 +1,13 @@
+import { useQuery } from 'react-query'
+import { postService } from '@/services'
+
 const Home = () => {
+  const { data, error, isLoading } = useQuery('posts', postService.getPosts)
 
   return (
-    <div>
-      <h1>Home</h1>
-    </div>
+    <>
+      <h2>USERS</h2>
+    </>
   )
 }
 

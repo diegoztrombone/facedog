@@ -1,8 +1,9 @@
+import { PageContainer } from '@/style'
 const Settings = () => {
   return (
-    <div>
-      <h1>Settigs</h1>
-    </div>
+    <>
+      <h2>USERS</h2>
+    </>
   )
 }
 

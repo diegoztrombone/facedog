@@ -1,8 +1,6 @@
 import styled from '@emotion/styled'
-import {Button, TextField} from '@mui/material'
-import LoadingButton from '@mui/lab/LoadingButton';
-
-
+import { Button, TextField } from '@mui/material'
+import LoadingButton from '@mui/lab/LoadingButton'
 
 export const StyledForm = styled('form')`
   width: 60%;
@@ -16,10 +14,9 @@ export const StyledForm = styled('form')`
 `
 
 export const StyledButton = styled(LoadingButton)`
-width: 100%;
+  width: 100%;
 `
 
 export const StyledInput = styled(TextField)`
-width: 100%;
+  width: 100%;
 `
-
