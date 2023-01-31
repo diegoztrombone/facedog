@@ -24,7 +24,6 @@ const LogginForm = () => {
   )
 
   if (user) {
-
     return <Navigate to={'/'} />
   }
 
