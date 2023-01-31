@@ -7,9 +7,11 @@ import { Navigate } from 'react-router-dom'
 
 const LogginForm = () => {
   const [credentials, setCredentials] = useState({ email: '', password: '' })
-  const { login, error, user, loading, loadingGoogle } = useAuthContext()
+  const { login, loginWithGoogle, error, user, loading, loadingGoogle } = useAuthContext()
 
-  const handleLoginWithGoogle = async () => {}
+  const handleLoginWithGoogle = async () => {
+    loginWithGoogle()
+  }
 
   const handleLogin = event => {
     event.preventDefault()

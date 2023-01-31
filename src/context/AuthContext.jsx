@@ -7,11 +7,14 @@ const initialState = {
   loadingGoogle: false,
   error: null,
   login: () => null,
+  loginWithGoogle: () => null,
+  logout: () => null,
 }
 const AuthContext = createContext(initialState)
 
 const AuthProvider = ({ children }) => {
   const auth = useAuth()
+  console.log("AUTH PROVIDER", auth)
   return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>
 }
 

@@ -7,6 +7,7 @@ import { useAuthContext, AuthProvider } from '@/context/AuthContext'
 
 const PrivateRoute = ({ redirect, children }) => {
   const { user } = useAuthContext()
+  console.log(">>>>>>", user)
   return user ? children : <Navigate to={redirect} />
 }
 

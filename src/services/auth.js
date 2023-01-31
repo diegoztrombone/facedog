@@ -4,6 +4,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   signInWithEmailAndPassword,
+  signOut
 } from 'firebase/auth'
 
 const firebaseConfig = {
@@ -40,11 +41,15 @@ const login = async ({ email, password }) => {
 const loginWithGoogle = async () => {
   return new Promise((resolve, reject) => {
     signInWithPopup(auth, googleProvider)
-      .then(response => resolve({ success: true, user: response.user }))
+      .then(response => resolve(response.user))
       .catch(error => {
         reject({ success: false, message: error.name })
       })
   })
 }
 
-export { login, loginWithGoogle }
+const logout = async () => {
+  await signOut(auth)
+}
+
+export default { login, loginWithGoogle, logout }

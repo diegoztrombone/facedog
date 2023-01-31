@@ -1,18 +1,18 @@
 import { useState } from 'react'
-import {login as standardLogin} from '@/services/firebase'
+import { auth } from '@/services'
 import { useLocalStorage } from '.'
 const useAuth = () => {
   const [loading, setLoading] = useState(false)
   const [loadingGoogle, setLoadingGoogle] = useState(false)
   const [error, setError] = useState(null)
   const [user, setUser] = useLocalStorage('user')
-  const [token, setToken] = useLocalStorage('access_token')
+  const [_, setToken] = useLocalStorage('access_token')
 
   const login = async credentials => {
     try {
       setLoading(true)
-      const { accessToken, email, displayName, phoneNumber, ...data } = await standardLogin(credentials)
-      setUser({email, displayName, phoneNumber})
+      const { accessToken, email, displayName, phoneNumber, ...data } = await auth.login(credentials)
+      setUser({ email, displayName, phoneNumber })
       setToken(accessToken)
       setLoading(false)
     } catch (error) {
@@ -23,7 +23,33 @@ const useAuth = () => {
     }
   }
 
-  return { login, user, token, loading, loadingGoogle, error }
+  const loginWithGoogle = async () => {
+    try {
+      setLoadingGoogle(true)
+      const { accessToken, email, displayName, phoneNumber, ...data } = await auth.loginWithGoogle()
+      setUser({ email, displayName, phoneNumber })
+      setToken(accessToken)
+      setLoadingGoogle(false)
+    } catch (error) {
+      setError(true)
+      setLoadingGoogle(false)
+    } finally {
+      setLoadingGoogle(false)
+    }
+  }
+
+  const logout = async () => {
+    try {
+      setToken(null)
+      setUser(null)
+      await auth.logout()
+      
+    } catch (error) {
+      console.log('EROR LOGOUT', error)
+    }
+  }
+
+  return { login, loginWithGoogle, logout, user, loading, loadingGoogle, error }
 }
 
 export default useAuth
