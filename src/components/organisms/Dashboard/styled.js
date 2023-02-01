@@ -21,10 +21,7 @@ export const NavigationContainer = styled(Grid)`
 `
 
 export const PageContainer = styled(Grid)`
-  display: grid;
-  width: 100%;
-  grid-template-columns: 3fr 1fr;
-  justify-items: center;
   overflow-y: scroll;
+  padding: 1.5rem 0;
   height: 100vh;
 `

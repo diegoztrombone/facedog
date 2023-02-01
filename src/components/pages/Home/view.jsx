@@ -5,7 +5,7 @@ import PostCard from '@/components/molecules/PostCard'
 import { CardContainer } from './styled'
 
 const Home = () => {
-  const { data, isError, isLoading, isFetched } = useQuery('posts', postService.getPosts)
+  const { data, isError, isLoading, isFetched } = useQuery('getPosts', postService.getPosts)
 
   if (isLoading ) {
     return (
