@@ -1,13 +1,25 @@
 import { useQuery } from 'react-query'
 import { postService } from '@/services'
+import { CardContainer } from './styled'
+import PostCard from '@/components/molecules/PostCard'
 
 const Home = () => {
-  const { data, error, isLoading } = useQuery('posts', postService.getPosts)
+  const { data, isError, isLoading } = useQuery('posts', postService.getPosts)
+
+  if (isLoading) {
+    return <CardContainer>CARGANDO</CardContainer>
+  }
+
+  if (isError) {
+    return <CardContainer>ERROR</CardContainer>
+  }
 
   return (
-    <>
-      <h2>USERS</h2>
-    </>
+    <CardContainer>
+      {data.data.map(post => (
+        <PostCard post={post}></PostCard>
+      ))}
+    </CardContainer>
   )
 }
 

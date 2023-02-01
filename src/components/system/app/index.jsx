@@ -5,6 +5,7 @@ import Router from '@/router'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import { QueryClientProvider, QueryClient } from 'react-query'
 import { BrowserRouter } from 'react-router-dom'
+import { providersCompose } from '@/utils'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -31,19 +32,12 @@ const ReactQueryProvider = ({ children }) => (
   </QueryClientProvider>
 )
 
-const compose = providers =>
-  providers.reduce((Prev, Curr) => ({ children }) => (
-    <Prev>
-      <Curr>{children}</Curr>
-    </Prev>
-  ))
-
-const ComposeProviders = compose([BrowserRouter, ReactQueryProvider, AuthProvider, StyleProvider])
+const Providers = providersCompose([BrowserRouter, ReactQueryProvider, AuthProvider, StyleProvider])
 
 const App = () => (
-  <ComposeProviders>
+  <Providers>
     <Router />
-  </ComposeProviders>
+  </Providers>
 )
 
 export default App
