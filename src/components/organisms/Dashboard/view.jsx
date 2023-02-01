@@ -2,22 +2,22 @@ import Navigation from '@/components/molecules/Navigation'
 import Sidebar from '@/components/molecules/Sidebar'
 import { Outlet } from 'react-router-dom'
 import { Grid } from '@mui/material'
-import { PageContainer } from '@/style'
+import { PageContainer, NavigationContainer } from './styled'
 
 const Dashboard = () => {
   return (
     <Grid container spacing={0}>
-      <Grid item xs={12} lg={3}>
+      <NavigationContainer item xs={12} md={3}>
         <Navigation />
-      </Grid>
-      <Grid item xs={12} lg={7}>
-        <PageContainer>
+      </NavigationContainer>
+      <PageContainer container spacing={0} item xs={12} md={9}>
+        <Grid item md={9}>
           <Outlet />
-        </PageContainer>
-      </Grid>
-      <Grid item xs={12} lg={2}>
-        <Sidebar />
-      </Grid>
+        </Grid>
+        <Grid item md={3}>
+          <Sidebar />
+        </Grid>
+      </PageContainer>
     </Grid>
   )
 }

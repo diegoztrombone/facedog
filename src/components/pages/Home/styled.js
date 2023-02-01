@@ -1,10 +1,9 @@
 import styled from '@emotion/styled'
-import { Box } from '@mui/system'
+import { Container } from '@mui/material'
 
-export const CardContainer = styled(Box)`
-  padding: 5rem 0;
+export const CardContainer = styled(Container)`
+  padding: 1.5rem 0;
   width: 100%;
-  overflow-y: scroll;
   gap: 5rem;
   display: flex;
   flex-direction: column;

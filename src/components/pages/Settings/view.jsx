@@ -1,4 +1,4 @@
-import { PageContainer } from '@/style'
+
 const Settings = () => {
   return (
     <>

@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 import styled from '@emotion/styled'
-import { createTheme } from '@mui/material'
+import { createTheme, Grid } from '@mui/material'
 import reset from 'styled-reset'
 
 const palette = {
@@ -46,11 +46,5 @@ const GlobalStyle = createGlobalStyle`
     }
 `
 
-const PageContainer = styled('main')`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  height: 100vh;
-`
-export { GlobalStyle, Theme, palette, PageContainer }
+
+export { GlobalStyle, Theme, palette }

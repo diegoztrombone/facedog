@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { Box } from '@mui/system'
-import { palette } from '@/style'
 import { Button } from '@mui/material'
+import { palette } from '@/style'
 
 export const SidebarContainer = styled(Box)`
   display: flex;

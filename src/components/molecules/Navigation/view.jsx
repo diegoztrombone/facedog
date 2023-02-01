@@ -1,6 +1,6 @@
 import { useAuthContext } from '@/context/AuthContext'
 import { useNavigate } from 'react-router-dom'
-import { NavigationContainer, Container, S_Button } from './styled'
+import { Container, S_Button } from './styled'
 import LogoutIcon from '@mui/icons-material/Logout'
 import WebhookIcon from '@mui/icons-material/Webhook'
 import HomeIcon from '@mui/icons-material/Home'
@@ -23,7 +23,7 @@ const Navigation = () => {
   }
 
   return (
-    <NavigationContainer>
+    <>
       <Container>
         <WebhookIcon sx={{ fontSize: 60 }} />
         <h2>React test</h2>
@@ -48,7 +48,7 @@ const Navigation = () => {
           <p>Logout</p>
         </S_Button>
       </Container>
-    </NavigationContainer>
+    </>
   )
 }
 

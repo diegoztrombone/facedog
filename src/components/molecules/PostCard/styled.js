@@ -3,7 +3,7 @@ import { Card } from '@mui/material'
 import CardMedia from '@mui/material/CardMedia'
 
 export const S_Card = styled(Card)`
-  width: 80%;
+  width: 100%;
   overflow: visible;
   
 

@@ -3,24 +3,6 @@ import { Box } from '@mui/system'
 import { palette } from '@/style'
 import { Button } from '@mui/material'
 
-export const NavigationContainer = styled(Box)`
-  background-color: ${palette.secondary};
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: stretch;
-  text-align: center;
-  height: 100vh;
-
-  box-shadow: 5px 5px 10px #ddd9d7, -5px -5px 10px #ffffff;
-
-  h2 {
-    font-size: 2rem;
-    font-weight: 700;
-    color: ${palette.primary};
-  }
-`
-
 export const Container = styled('div')`
   display: flex;
   flex-direction: column;
