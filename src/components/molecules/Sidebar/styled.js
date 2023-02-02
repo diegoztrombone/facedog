@@ -1,8 +1,30 @@
 import styled from '@emotion/styled'
 import { Box } from '@mui/system'
-import { Button } from '@mui/material'
+import { Card } from '@mui/material'
+import { palette } from '@/style'
+
 
 //https://jsfiddle.net/fr6b4b2d/
+
+
+export const S_Card = styled(Card)`
+  width: 100%;
+  overflow: visible;
+  display: grid;
+  grid-template-columns: 1fr;
+  place-content: center;
+  cursor: pointer;
+  transition: background-color .5s ease;
+
+  .MuiCardHeader-title {
+    font-size: 1rem;
+  }
+  
+
+  &:hover {
+    background-color: ${palette.secondary};
+  }
+`
 
 export const SidebarContainer = styled(Box)`
   display: flex;
@@ -14,7 +36,7 @@ export const SidebarContainer = styled(Box)`
   width: 18vw;
   gap: 1rem;
   top: 0;
-  overflow-y: ${props => (props.ishidden)};
+  overflow-y: ${props => props.ishidden};
   scrollbar-width: thin;
   scrollbar-color: #bfbfbf #ffffff;
 
@@ -31,25 +53,5 @@ export const SidebarContainer = styled(Box)`
     background-color: #bfbfbf;
     border-radius: 10px;
     border: 3px none #ffffff;
-  }
-`
-
-export const Container = styled('div')`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem 1rem;
-  gap: 1rem;
-`
-
-export const S_Button = styled(Button)`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-
-  p {
-    margin-left: 0.5rem;
   }
 `

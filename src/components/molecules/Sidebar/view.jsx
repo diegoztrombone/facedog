@@ -1,14 +1,15 @@
+import { useState } from 'react'
 import { useInfiniteQuery, useQueryClient } from 'react-query'
 import { userService } from '@/services'
-import UserCard from '../UserCard'
+import UserCard from '@/components/molecules/UserCard'
 import SearchBar from '@/components/atoms/SearchBar'
-import { SidebarContainer } from './styled'
-import { useState } from 'react'
-import CircularProgress from '@mui/material/CircularProgress'
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
+import { SidebarContainer, S_Card } from './styled'
 import { IconButton } from '@mui/material'
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
+import CircularProgress from '@mui/material/CircularProgress'
 
 const Sidebar = () => {
+  const queryClient = useQueryClient()
   const [focus, setFocus] = useState(false)
 
   const { data, isLoading, hasNextPage, fetchNextPage } = useInfiniteQuery({
@@ -21,12 +22,11 @@ const Sidebar = () => {
     },
   })
 
-  const queryClient = useQueryClient()
-  const getPostState = queryClient?.getQueryState('getPosts')
+  const { isFetching: isGetPostFetching } = queryClient.getQueryState('getPosts')
 
   const handleOnChange = () => {}
 
-  if (isLoading || getPostState.isFetching) {
+  if (isLoading || isGetPostFetching) {
     return (
       <SidebarContainer>
         <CircularProgress />
@@ -49,9 +49,11 @@ const Sidebar = () => {
       ))}
 
       {hasNextPage && (
-        <IconButton onClick={fetchNextPage} color='primary' aria-label='upload picture' component='label'>
-          <MoreHorizIcon />
-        </IconButton>
+        <S_Card>
+          <IconButton onClick={fetchNextPage} color='primary' aria-label='upload picture' component='label'>
+            <MoreHorizIcon />
+          </IconButton>
+        </S_Card>
       )}
     </SidebarContainer>
   )

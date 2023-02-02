@@ -1,4 +1,4 @@
-import { useQuery, useQueryClient } from 'react-query'
+import { useQuery } from 'react-query'
 import { postService } from '@/services'
 import SkeletonPostCard from '@/components/molecules/SkeletonPostCard'
 import { Grid } from '@mui/material'
