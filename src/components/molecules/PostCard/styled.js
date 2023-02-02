@@ -6,6 +6,17 @@ export const S_Card = styled(Card)`
   width: 100%;
   overflow: visible;
   
+  .MuiCardHeader-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: text-decoration 1s ease;
+    cursor: pointer;
+  }
+
+  .MuiCardHeader-title:hover {
+    text-decoration: underline;
+  }
+  
 
 `
 

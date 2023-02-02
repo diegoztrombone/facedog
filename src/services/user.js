@@ -2,10 +2,10 @@ import axios from 'axios'
 import { http } from '.'
 import api from '@/api'
 
-const getAllUsersList = () => {
+const getAllUsersList = (page = 0) => {
   return new Promise((resolve, reject) => {
     http
-      .get(api.getAllUsersList)
+      .get(api.getAllUsersList, { params: { page } })
       .then(response => resolve(response.data))
       .catch(error => reject(error))
   })

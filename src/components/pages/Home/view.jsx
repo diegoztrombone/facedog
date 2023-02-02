@@ -1,28 +1,42 @@
-import { useQuery } from 'react-query'
+import { useQuery, useQueryClient } from 'react-query'
 import { postService } from '@/services'
 import SkeletonPostCard from '@/components/molecules/SkeletonPostCard'
+import { Grid } from '@mui/material'
 import PostCard from '@/components/molecules/PostCard'
-import { CardContainer } from './styled'
+import { CardContainer, HomeContainer } from './styled'
+import Sidebar from '@/components/molecules/Sidebar'
 
 const Home = () => {
-  const { data, isError, isLoading, isFetched } = useQuery('getPosts', postService.getPosts)
+  const { data, isLoading } = useQuery('getPosts', postService.getPosts)
 
-  if (isLoading ) {
+  if (isLoading) {
     return (
-      <CardContainer>
-        {Array.from({ length: 10 }).map(_ => (
-          <SkeletonPostCard />
-        ))}
-      </CardContainer>
+      <HomeContainer container spacing={0}>
+        <Grid item md={9}>
+          <CardContainer>
+            <SkeletonPostCard></SkeletonPostCard>
+          </CardContainer>
+        </Grid>
+        <Grid item md={3}>
+          <Sidebar />
+        </Grid>
+      </HomeContainer>
     )
   }
 
   return (
-    <CardContainer>
-      {data.data.map(post => (
-        <PostCard post={post}></PostCard>
-      ))}
-    </CardContainer>
+    <HomeContainer container spacing={0}>
+      <Grid item md={9}>
+        <CardContainer>
+          {data?.data.map(post => (
+            <PostCard key={post.id} post={post}></PostCard>
+          ))}
+        </CardContainer>
+      </Grid>
+      <Grid item md={3}>
+        <Sidebar />
+      </Grid>
+    </HomeContainer>
   )
 }
 

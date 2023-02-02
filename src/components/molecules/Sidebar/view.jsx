@@ -1,32 +1,58 @@
-import { SidebarContainer, Container } from './styled'
+import { useInfiniteQuery, useQueryClient } from 'react-query'
 import { userService } from '@/services'
-import { useQuery } from 'react-query'
 import UserCard from '../UserCard'
+import SearchBar from '@/components/atoms/SearchBar'
+import { SidebarContainer } from './styled'
 import { useState } from 'react'
-import { useEffect } from 'react'
+import CircularProgress from '@mui/material/CircularProgress'
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
+import { IconButton } from '@mui/material'
 
 const Sidebar = () => {
-  const { data: users, isError, isLoading, isFetched } = useQuery('getAllUsersList', userService.getAllUsersList)
   const [focus, setFocus] = useState(false)
 
-  useEffect(() => {
-    console.log("FOCUS", focus)
-  }, [focus])
+  const { data, isLoading, hasNextPage, fetchNextPage } = useInfiniteQuery({
+    queryKey: ['getAllUsersList'],
+    queryFn: ({ pageParam = 0 }) => userService.getAllUsersList(pageParam),
+    getNextPageParam: ({ data, page, limit, total }) => {
+      if (data?.length === limit) {
+        return page + 1
+      } else return
+    },
+  })
 
-  if (isLoading) {
+  const queryClient = useQueryClient()
+  const getPostState = queryClient?.getQueryState('getPosts')
+
+  const handleOnChange = () => {}
+
+  if (isLoading || getPostState.isFetching) {
     return (
       <SidebarContainer>
-        {/* {Array.from({length: 10}).map(_ => <UserCard user={}/>)} */}
-        CARGANDO
+        <CircularProgress />
       </SidebarContainer>
     )
   }
 
+  const users = data?.pages.reduce((prev, page) => prev.concat(page.data), [])
+
   return (
-    <SidebarContainer isHidden={focus} onMouseEnter={() => setFocus(true)} onMouseLeave={() => setFocus(false)}>
-      {users.data.map(user => (
-        <UserCard key={user.id} user={user} />
+    <SidebarContainer
+      ishidden={focus ? 'scroll' : 'hidden'}
+      onMouseEnter={() => setFocus(true)}
+      onMouseLeave={() => setFocus(false)}
+    >
+      <SearchBar onChange={handleOnChange} />
+
+      {users.map((user, index) => (
+        <UserCard key={user.id + index} user={user} />
       ))}
+
+      {hasNextPage && (
+        <IconButton onClick={fetchNextPage} color='primary' aria-label='upload picture' component='label'>
+          <MoreHorizIcon />
+        </IconButton>
+      )}
     </SidebarContainer>
   )
 }

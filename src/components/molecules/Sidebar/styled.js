@@ -14,7 +14,7 @@ export const SidebarContainer = styled(Box)`
   width: 18vw;
   gap: 1rem;
   top: 0;
-  overflow-y: ${props => (props.isHidden ? 'scroll' : 'hidden')};
+  overflow-y: ${props => (props.ishidden)};
   scrollbar-width: thin;
   scrollbar-color: #bfbfbf #ffffff;
 
