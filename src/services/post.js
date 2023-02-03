@@ -2,6 +2,7 @@ import { http } from '.'
 import api from '@/api'
 
 const getPosts = (page = 0) => {
+  console.log("ENTRA")
   return new Promise((resolve, reject) => {
     http
       .get(api.getAllPost, { params: { page }})

@@ -1,7 +1,5 @@
 import styled from '@emotion/styled'
 import { Container, Grid } from '@mui/material'
-import InfiniteScroll from 'react-infinite-scroll-component'
-import { Box } from '@mui/system'
 
 export const CardContainer = styled(Container)`
   width: 90%;
@@ -19,10 +17,8 @@ export const HomeContainer = styled(Grid)`
   height: 100vh;
 `
 
-export const LoadingContainer = styled(Container)`
+export const GridContainer = styled(Grid)`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem 0;
+  justify-content: flex-start;
 `
