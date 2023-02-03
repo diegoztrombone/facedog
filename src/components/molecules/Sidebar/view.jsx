@@ -3,10 +3,11 @@ import { useInfiniteQuery, useQueryClient } from 'react-query'
 import { userService } from '@/services'
 import UserCard from '@/components/molecules/UserCard'
 import SearchBar from '@/components/atoms/SearchBar'
-import { SidebarContainer, S_Card } from './styled'
-import { IconButton } from '@mui/material'
+import { SidebarContainer } from './styled'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
 import CircularProgress from '@mui/material/CircularProgress'
+import InfiniteScroll from 'react-infinite-scroll-component'
+import { Box } from '@mui/system'
 
 const Sidebar = () => {
   const queryClient = useQueryClient()
@@ -26,7 +27,7 @@ const Sidebar = () => {
 
   const handleOnChange = () => {}
 
-  if (isLoading || isGetPostFetching) {
+  if (isLoading && isGetPostFetching) {
     return (
       <SidebarContainer>
         <CircularProgress />
@@ -34,7 +35,9 @@ const Sidebar = () => {
     )
   }
 
-  const users = data?.pages.reduce((prev, page) => prev.concat(page.data), [])
+  /* const users = data?.pages.reduce((prev, page) => prev.concat(page.data), []) */
+
+  const users = data?.pages[0].data ?? []
 
   return (
     <SidebarContainer
@@ -43,18 +46,17 @@ const Sidebar = () => {
       onMouseLeave={() => setFocus(false)}
     >
       <SearchBar onChange={handleOnChange} />
-
-      {users.map((user, index) => (
-        <UserCard key={user.id + index} user={user} />
-      ))}
-
-      {hasNextPage && (
-        <S_Card>
-          <IconButton onClick={fetchNextPage} color='primary' aria-label='upload picture' component='label'>
-            <MoreHorizIcon />
-          </IconButton>
-        </S_Card>
-      )}
+      <Box sx={{width: '100%'}}>
+      <InfiniteScroll
+        dataLength={users.length}
+        hasMore={true}
+        loader={<h4>que dices</h4>}
+      >
+        {users.map((user, index) => (
+          <UserCard key={user.id + index} user={user} />
+        ))}
+      </InfiniteScroll>
+      </Box>
     </SidebarContainer>
   )
 }

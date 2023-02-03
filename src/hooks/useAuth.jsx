@@ -8,9 +8,9 @@ const useAuth = () => {
   const [user, setUser] = useLocalStorage('user')
   const [token, setToken] = useLocalStorage('access_token')
 
-  useEffect(() => {
+ /*  useEffect(() => {
     token ? setAppIdHeader(import.meta.env.VITE_API_ID) : removeAppIdHeader()
-  }, [token])
+  }, [token]) */
 
   const login = async credentials => {
     try {

@@ -1,30 +1,11 @@
 import styled from '@emotion/styled'
 import { Box } from '@mui/system'
-import { Card } from '@mui/material'
+import InfiniteScroll from 'react-infinite-scroll-component'
 import { palette } from '@/style'
 
 
 //https://jsfiddle.net/fr6b4b2d/
 
-
-export const S_Card = styled(Card)`
-  width: 100%;
-  overflow: visible;
-  display: grid;
-  grid-template-columns: 1fr;
-  place-content: center;
-  cursor: pointer;
-  transition: background-color .5s ease;
-
-  .MuiCardHeader-title {
-    font-size: 1rem;
-  }
-  
-
-  &:hover {
-    background-color: ${palette.secondary};
-  }
-`
 
 export const SidebarContainer = styled(Box)`
   display: flex;
@@ -37,6 +18,7 @@ export const SidebarContainer = styled(Box)`
   gap: 1rem;
   top: 0;
   overflow-y: ${props => props.ishidden};
+  overflow-x: hidden;
   scrollbar-width: thin;
   scrollbar-color: #bfbfbf #ffffff;
 

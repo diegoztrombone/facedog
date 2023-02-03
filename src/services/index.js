@@ -11,6 +11,8 @@ export const http = axios.create({
   },
 })
 
+
+
 export const setAppIdHeader = appId => {
   http.defaults.headers.common['app-id'] = appId
 }
@@ -18,5 +20,7 @@ export const setAppIdHeader = appId => {
 export const removeAppIdHeader = () => {
   delete http.defaults.headers.common['app-id']
 }
+
+setAppIdHeader(import.meta.env.VITE_API_ID)
 
 export { authService, userService, postService }
