@@ -1,36 +1,36 @@
-import styled from '@emotion/styled'
+import styled from 'styled-components'
 import { Box } from '@mui/system'
-import InfiniteScroll from 'react-infinite-scroll-component'
-import { palette } from '@/style'
-
-import FakeScroll from '@yaireo/fakescroll/react.fakescroll.js'
-import '@yaireo/fakescroll/fakescroll.css'
 
 //https://jsfiddle.net/fr6b4b2d/
 
-export const SidebarContainer = styled(FakeScroll)`
+export const SidebarContainer = styled('div')`
+  padding: 1rem 0;
   height: 95vh;
-  width: 15rem;
+  width: 18%;
   position: fixed;
   top: 0;
-  right: 2rem;
-  margin: 1rem 0;
+  right: 20px;
+  overflow-y: ${props => (props.scroll ? 'auto' : 'hidden')};
+  scrollbar-width: thin;
+  scrollbar-color: #6969dd #e0e0e0;
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
 
-  .fakeScroll__content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    padding-bottom: 1rem;
+  ::-webkit-scrollbar {
+    width: 5px;
   }
 
-  .fakeScroll__bar {
-    transition: background-color 0.4s ease;
-    background-color: ${props => (props.$scrollbar ? '#BCC0C490' : 'transparent')};
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   }
 `
 
 export const UserCardContainer = styled(Box)`
+  padding: 1.5rem 0;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr;

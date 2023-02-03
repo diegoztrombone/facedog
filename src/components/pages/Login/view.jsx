@@ -1,10 +1,12 @@
 import StyledGrid from './syled'
 import LoginForm from '@/components/molecules/LoginForm'
+import PetsIcon from '@mui/icons-material/Pets';
 
 const Login = () => {
   return (
     <StyledGrid>
-      <h1>React Vite Test</h1>
+      <PetsIcon sx={{ fontSize: 60 }} />
+      <h1>Facedog</h1>
       <LoginForm />
     </StyledGrid>
   )

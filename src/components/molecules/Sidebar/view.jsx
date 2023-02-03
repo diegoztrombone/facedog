@@ -5,7 +5,6 @@ import UserCard from '@/components/molecules/UserCard'
 import SearchBar from '@/components/atoms/SearchBar'
 import { SidebarContainer, UserCardContainer } from './styled'
 
-
 const Sidebar = () => {
   const queryClient = useQueryClient()
   const [showScrollBar, setShowScrollbar] = useState(false)
@@ -20,7 +19,7 @@ const Sidebar = () => {
     },
   })
 
-  const { isLoading: isGetPostsLoading } = queryClient.getQueryState('getPosts')
+  const {status: getPostQueryStatus} = queryClient.getQueryState('getPosts')
 
   const handleScroll = e => {
     const isBottom = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight
@@ -32,7 +31,7 @@ const Sidebar = () => {
 
   const handleOnChange = () => {}
 
-  if (isLoading || isGetPostsLoading) {
+  if (isLoading || getPostQueryStatus === "loading") {
     return (
       <SidebarContainer>
         <SearchBar />
@@ -47,7 +46,7 @@ const Sidebar = () => {
 
   return (
     <SidebarContainer
-      $scrollbar={showScrollBar}
+      scroll={showScrollBar}
       onMouseEnter={() => setShowScrollbar(true)}
       onMouseLeave={() => setShowScrollbar(false)}
       onScroll={handleScroll}

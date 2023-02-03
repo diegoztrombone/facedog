@@ -25,7 +25,7 @@ const Home = () => {
       fetchNextPage()
     }
   }
-
+  console.log('IS LOADING HOME', isLoading)
   if (isLoading) {
     return (
       <HomeContainer container spacing={0}>
