@@ -1,10 +1,13 @@
-import { useInfiniteQuery } from 'react-query'
-import { userService } from '@/services'
-import { useEffect, useState } from 'react'
-
+import { useQueryClient } from 'react-query'
 const User = () => {
-  const [allUsersFetched, setAllUsersFetched] = useState(false)
-  const { data, isLoading, hasNextPage, isFetchingNextPage, fetchNextPage, isFetched } = useInfiniteQuery({
+  const queryClient = useQueryClient()
+
+  const { data } = queryClient.getQueryState('getAllUsersList')
+
+  console.log(data)
+  /*const [allUsersFetched, setAllUsersFetched] = useState(false)
+  
+   const { data, isLoading, hasNextPage, isFetchingNextPage, fetchNextPage, isFetched } = useInfiniteQuery({
     queryKey: ['getAllUsersList'],
     queryFn: ({ pageParam = 0 }) => userService.getAllUsersList(pageParam),
     getNextPageParam: ({ data, page, limit, total }) => {
@@ -26,7 +29,7 @@ const User = () => {
 
   if (!allUsersFetched) {
     return <h2>CACA</h2>
-  }
+  } */
   return (
     <>
       <h2>TODO OK</h2>

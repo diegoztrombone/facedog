@@ -1,37 +1,32 @@
-import { useState } from 'react'
-import { useInfiniteQuery, useQueryClient } from 'react-query'
-import { userService } from '@/services'
+import { useState, useEffect } from 'react'
+import { useQueryClient } from 'react-query'
 import UserCard from '@/components/molecules/UserCard'
 import SearchBar from '@/components/atoms/SearchBar'
 import { SidebarContainer, UserCardContainer } from './styled'
+import { getAllUserList } from '@/query'
 
 const Sidebar = () => {
   const queryClient = useQueryClient()
   const [showScrollBar, setShowScrollbar] = useState(false)
 
-  const { data, isLoading, hasNextPage, isFetchingNextPage, fetchNextPage } = useInfiniteQuery({
-    queryKey: ['getAllUsersList'],
-    queryFn: ({ pageParam = 0 }) => userService.getAllUsersList(pageParam),
-    getNextPageParam: ({ data, page, limit, total }) => {
-      if (data?.length === limit) {
-        return page + 1
-      } else return
-    },
-  })
+  const { status: getPostQueryStatus } = queryClient.getQueryState('getPosts')
+  const { data: users, isFetching: allUsersFetched } = getAllUserList()
 
-  const {status: getPostQueryStatus} = queryClient.getQueryState('getPosts')
-
-  const handleScroll = e => {
+  // INFINITE SCROLL HANDLE
+  /* const handleScroll = e => {
     const isBottom = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight
 
     if (isBottom && hasNextPage) {
       fetchNextPage()
     }
-  }
+  } */
+
+  console.log('Re-rendered sidebar', users)
+  console.log('Re-rendering', allUsersFetched)
 
   const handleOnChange = () => {}
 
-  if (isLoading || getPostQueryStatus === "loading") {
+  if (!allUsersFetched || getPostQueryStatus === 'loading') {
     return (
       <SidebarContainer>
         <SearchBar />
@@ -42,21 +37,18 @@ const Sidebar = () => {
     )
   }
 
-  const users = data?.pages.reduce((prev, page) => prev.concat(page.data), [])
-
   return (
     <SidebarContainer
       scroll={showScrollBar}
       onMouseEnter={() => setShowScrollbar(true)}
       onMouseLeave={() => setShowScrollbar(false)}
-      onScroll={handleScroll}
+      //onScroll={handleScroll}
     >
       <SearchBar onChange={handleOnChange} />
       <UserCardContainer>
         {users?.map((user, index) => (
           <UserCard key={user.id + index} user={user} />
         ))}
-        {isFetchingNextPage && <UserCard user={null} loading />}
       </UserCardContainer>
     </SidebarContainer>
   )
