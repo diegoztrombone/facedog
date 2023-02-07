@@ -8,17 +8,16 @@
 - API: [DUMMYAPI](https://dummyapi.io/) (hay que registrarse para usarla)
 
 # TODO
-
 - Crear registro de usuario
-- Finalizar auth
-- Crear dashboard
-- Linkear login con google
+- Panel User
+- Buscador Users
 
 # DEV
 
 - `yarn`
-- Crear cuenta de firebase, y linkear proyecto
+- Crear cuenta de firebase, y configurar proyecto con auth
+- Crear cuenta en dummyapi para optener el api-id
 - Renombrar .env.example a .env y rellenar con los datos proporcionados por firebase y el api-id de la api de datos
 - Habilitar login social de google
-- Añadir usuarios manualmente en firebase (por ahora)
 - `yarn dev`
+- Añadir usuarios manualmente en firebase (por ahora) o usar el login social google
