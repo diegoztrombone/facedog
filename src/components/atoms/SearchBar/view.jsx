@@ -1,14 +1,15 @@
-
-import { SearchBarContainer } from './styled';
+import { SearchBarContainer } from './styled'
 import { TextField } from '@mui/material'
-import SearchIcon from '@mui/icons-material/Search';
+import SearchIcon from '@mui/icons-material/Search'
+import CircularProgress from '@mui/material/CircularProgress'
+import { Box } from '@mui/material'
 
-const SearchBar = ({onChange}) => {
+const SearchBar = ({ onChange, loading }) => {
   return (
     <>
       <SearchBarContainer>
-        <SearchIcon />
-        <TextField onChange={onChange} label='Search' variant='standard' sx={{width: '100%'}} />
+        <Box>{loading ? <CircularProgress size={24} /> : <SearchIcon />}</Box>
+        <TextField onChange={onChange} label='Search' variant='standard' sx={{ width: '100%' }} />
       </SearchBarContainer>
     </>
   )

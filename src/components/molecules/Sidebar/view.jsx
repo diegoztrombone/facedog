@@ -9,13 +9,36 @@ import useDebounce from '@/hooks/useDebounce'
 const Sidebar = () => {
   const queryClient = useQueryClient()
   const [showScrollBar, setShowScrollbar] = useState(false)
+  const [search, setSearch] = useState('')
+  const [users, setUsers] = useState([])
+  const [searchLoading, setSearchLoading] = useState(false)
+  const debounceSearch = useDebounce(search, 500)
 
   const { status: getPostQueryStatus } = queryClient.getQueryState('getPosts')
-  const { data: users, isFetching: allUsersFetched } = getAllUserList()
+  const { data, isFetching: allUsersFetched } = getAllUserList()
+
+  useEffect(() => {
+    if (!data) {
+      console.log('NO DATA')
+    }
+    if (!debounceSearch) {
+      setSearchLoading(false)
+      setUsers(data)
+      return
+    }
+
+    const result = data?.filter(user => {
+      const name = `${user.firstName} ${user.lastName}`
+      return name.toLowerCase().includes(debounceSearch.toLowerCase())
+    })
+    setUsers(result)
+    setSearchLoading(false)
+  }, [debounceSearch])
 
   const handleOnChange = e => {
-    const value = useDebounce(e.target.value, 1000)
-    console.log('>>>', value)
+    if (!searchLoading) setSearchLoading(true)
+    console.log(e.target.value)
+    setSearch(e.target.value)
   }
 
   if (!allUsersFetched || getPostQueryStatus === 'loading') {
@@ -35,7 +58,7 @@ const Sidebar = () => {
       onMouseEnter={() => setShowScrollbar(true)}
       onMouseLeave={() => setShowScrollbar(false)}
     >
-      <SearchBar onChange={handleOnChange} />
+      <SearchBar loading={searchLoading} onChange={handleOnChange} />
       <UserCardContainer>
         {users?.map((user, index) => (
           <UserCard key={user.id + index} user={user} />
