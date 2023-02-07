@@ -15,8 +15,6 @@ const Home = () => {
     }
   }
 
-  console.log("Re-rendered")
-
   if (isLoading) {
     return (
       <HomeContainer container spacing={0}>

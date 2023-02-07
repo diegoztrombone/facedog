@@ -33,7 +33,7 @@ const getAllUserList = () => {
     return userData?.pages.reduce((prev, page) => prev.concat(page.data), [])
   }, [allUsersFetched])
 
-  return useMemo(() => ({data, isFetching: allUsersFetched}), [allUsersFetched])
+  return { data, isFetching: allUsersFetched }
 }
 
 export default getAllUserList

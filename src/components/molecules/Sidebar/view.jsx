@@ -21,9 +21,6 @@ const Sidebar = () => {
     }
   } */
 
-  console.log('Re-rendered sidebar', users)
-  console.log('Re-rendering', allUsersFetched)
-
   const handleOnChange = () => {}
 
   if (!allUsersFetched || getPostQueryStatus === 'loading') {
