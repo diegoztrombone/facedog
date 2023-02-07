@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { authService, setAppIdHeader, removeAppIdHeader } from '@/services'
+import { useState } from 'react'
+import { authService } from '@/services'
 import { useLocalStorage } from '.'
 const useAuth = () => {
   const [loading, setLoading] = useState(false)
@@ -7,10 +7,6 @@ const useAuth = () => {
   const [error, setError] = useState(null)
   const [user, setUser] = useLocalStorage('user')
   const [token, setToken] = useLocalStorage('access_token')
-
-  useEffect(() => {
-    token ? setAppIdHeader(import.meta.env.VITE_API_ID) : removeAppIdHeader()
-  }, [token])
 
   const login = async credentials => {
     try {
