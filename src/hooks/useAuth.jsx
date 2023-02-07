@@ -42,7 +42,6 @@ const useAuth = () => {
     try {
       setToken(null)
       setUser(null)
-      removeAppIdHeader()
       await authService.logout()
     } catch (error) {
       console.log('EROR LOGOUT', error)

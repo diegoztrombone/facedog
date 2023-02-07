@@ -4,6 +4,7 @@ import UserCard from '@/components/molecules/UserCard'
 import SearchBar from '@/components/atoms/SearchBar'
 import { SidebarContainer, UserCardContainer } from './styled'
 import { getAllUserList } from '@/query'
+import useDebounce from '@/hooks/useDebounce'
 
 const Sidebar = () => {
   const queryClient = useQueryClient()
@@ -12,16 +13,10 @@ const Sidebar = () => {
   const { status: getPostQueryStatus } = queryClient.getQueryState('getPosts')
   const { data: users, isFetching: allUsersFetched } = getAllUserList()
 
-  // INFINITE SCROLL HANDLE
-  /* const handleScroll = e => {
-    const isBottom = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight
-
-    if (isBottom && hasNextPage) {
-      fetchNextPage()
-    }
-  } */
-
-  const handleOnChange = () => {}
+  const handleOnChange = e => {
+    const value = useDebounce(e.target.value, 1000)
+    console.log('>>>', value)
+  }
 
   if (!allUsersFetched || getPostQueryStatus === 'loading') {
     return (
@@ -39,7 +34,6 @@ const Sidebar = () => {
       scroll={showScrollBar}
       onMouseEnter={() => setShowScrollbar(true)}
       onMouseLeave={() => setShowScrollbar(false)}
-      //onScroll={handleScroll}
     >
       <SearchBar onChange={handleOnChange} />
       <UserCardContainer>
