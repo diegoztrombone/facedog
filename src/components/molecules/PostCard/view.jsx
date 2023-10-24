@@ -18,7 +18,9 @@ const PostCard = ({ post }) => {
           subheader={dateFormater(date)}
         />
         <CardContent>
-          <Typography variant='subtitule1' color='text.secondary'>{text}</Typography>
+          <Typography variant='subtitule1' color='text.secondary'>
+            {text}
+          </Typography>
         </CardContent>
         <S_CardMedia component='img' image={image} alt={text} />
         <CardContent>

@@ -1,6 +1,6 @@
 import StyledGrid from './syled'
 import LoginForm from '@/components/molecules/LoginForm'
-import PetsIcon from '@mui/icons-material/Pets';
+import PetsIcon from '@mui/icons-material/Pets'
 
 const Login = () => {
   return (

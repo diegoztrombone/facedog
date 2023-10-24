@@ -46,5 +46,4 @@ const GlobalStyle = createGlobalStyle`
     }
 `
 
-
 export { GlobalStyle, Theme, palette }

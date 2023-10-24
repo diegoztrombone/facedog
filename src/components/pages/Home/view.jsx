@@ -30,8 +30,6 @@ const Home = () => {
     )
   }
 
-  
-
   return (
     <HomeContainer container spacing={0} onScroll={handleScroll}>
       <GridContainer item md={9}>

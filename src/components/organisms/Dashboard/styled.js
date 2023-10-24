@@ -19,6 +19,3 @@ export const NavigationContainer = styled(Grid)`
     color: ${palette.primary};
   }
 `
-
-
-

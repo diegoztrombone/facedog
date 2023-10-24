@@ -2,11 +2,11 @@ import { useAuthContext } from '@/context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import { Container, S_Button } from './styled'
 import LogoutIcon from '@mui/icons-material/Logout'
-import PetsIcon from '@mui/icons-material/Pets';
+import PetsIcon from '@mui/icons-material/Pets'
 import HomeIcon from '@mui/icons-material/Home'
 import PersonIcon from '@mui/icons-material/Person'
 import SettingsIcon from '@mui/icons-material/Settings'
-import CloudSyncIcon from '@mui/icons-material/CloudSync';
+import CloudSyncIcon from '@mui/icons-material/CloudSync'
 import { useQueryClient } from 'react-query'
 
 const Navigation = () => {

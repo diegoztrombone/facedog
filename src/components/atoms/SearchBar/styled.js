@@ -6,6 +6,4 @@ export const SearchBarContainer = styled(Box)`
   align-items: flex-end;
   gap: 1rem;
   width: 100%;
-
-  
 `

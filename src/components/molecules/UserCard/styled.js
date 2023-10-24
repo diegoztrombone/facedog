@@ -6,12 +6,11 @@ export const S_Card = styled(Card)`
   width: 100%;
   overflow: visible;
   cursor: pointer;
-  transition: background-color .5s ease;
+  transition: background-color 0.5s ease;
 
   .MuiCardHeader-title {
     font-size: 1rem;
   }
-  
 
   &:hover {
     background-color: ${palette.secondary};

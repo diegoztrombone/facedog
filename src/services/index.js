@@ -8,10 +8,8 @@ export const http = axios.create({
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
-    'app-id': import.meta.env.VITE_API_ID
-
+    'app-id': import.meta.env.VITE_API_ID,
   },
 })
-
 
 export { authService, userService, postService }

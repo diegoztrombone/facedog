@@ -10,7 +10,7 @@ const Dashboard = () => {
       <NavigationContainer item md={3}>
         <Navigation />
       </NavigationContainer>
-      <Grid item  md={9}>
+      <Grid item md={9}>
         <Outlet />
       </Grid>
     </Grid>

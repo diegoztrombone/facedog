@@ -5,7 +5,7 @@ import CardMedia from '@mui/material/CardMedia'
 export const S_Card = styled(Card)`
   width: 100%;
   overflow: visible;
-  
+
   .MuiCardHeader-title {
     font-size: 1.1rem;
     font-weight: 500;
@@ -16,11 +16,6 @@ export const S_Card = styled(Card)`
   .MuiCardHeader-title:hover {
     text-decoration: underline;
   }
-  
-
 `
 
-export const S_CardMedia = styled(CardMedia)`
-
-
-`
+export const S_CardMedia = styled(CardMedia)``

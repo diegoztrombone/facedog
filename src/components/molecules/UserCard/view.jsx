@@ -9,7 +9,7 @@ const UserCard = ({ user, loading }) => {
     return (
       <>
         <S_Card>
-          <CardHeader avatar={loading ? <CircularProgress /> : <Avatar/>} title={<Skeleton variant='text' />} />
+          <CardHeader avatar={loading ? <CircularProgress /> : <Avatar />} title={<Skeleton variant='text' />} />
         </S_Card>
       </>
     )

@@ -1,8 +1,14 @@
-import { useInfiniteQuery } from "react-query"
+import { useInfiniteQuery } from 'react-query'
 import { postService } from '@/services'
 
 const getPost = () => {
-  const { data: postData, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery({
+  const {
+    data: postData,
+    isLoading,
+    hasNextPage,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery({
     queryKey: ['getPosts'],
     queryFn: ({ pageParam = 0 }) => postService.getPosts(pageParam),
     getNextPageParam: ({ data, page, limit }) => {
@@ -14,7 +20,7 @@ const getPost = () => {
 
   const data = postData?.pages.reduce((prev, page) => prev.concat(page.data), [])
 
-  return {data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage}
+  return { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage }
 }
 
 export default getPost
