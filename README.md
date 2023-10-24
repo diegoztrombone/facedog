@@ -1,4 +1,4 @@
-# REACT FRONTEND EXAMPLE
+# FACEDOG 
 
 - React v18.2
 - Vite v4 + React-swc
